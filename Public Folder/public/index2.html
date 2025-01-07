@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
+        }
+        .container {
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .show-more {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>لوحة تحكم الإدارة</h1>
+        <div>
+            <h2>إضافة أو تعديل البيانات</h2>
+            <div class="form-group">
+                <label for="country">الدولة</label>
+                <input type="text" id="country" placeholder="أدخل اسم الدولة">
+            </div>
+            <div class="form-group">
+                <label for="city">المدينة</label>
+                <input type="text" id="city" placeholder="أدخل اسم المدينة">
+            </div>
+            <div class="form-group">
+                <label for="school">المدرسة</label>
+                <input type="text" id="school" placeholder="أدخل اسم المدرسة">
+            </div>
+            <div class="form-group">
+                <label for="schoolImage">رابط صورة المدرسة</label>
+                <input type="text" id="schoolImage" placeholder="أدخل رابط صورة المدرسة">
+            </div>
+            <div class="form-group">
+                <label for="schoolDescription">وصف المدرسة</label>
+                <input type="text" id="schoolDescription" placeholder="أدخل وصف المدرسة">
+            </div>
+            <div class="form-group">
+                <label for="course">الدورة الدراسية</label>
+                <input type="text" id="course" placeholder="أدخل اسم الدورة">
+            </div>
+            <div class="form-group">
+                <label for="weeks">عدد الأسابيع</label>
+                <select id="weeks">
+                    <option value="4">4 أسابيع</option>
+                    <option value="6">6 أسابيع</option>
+                    <option value="8">8 أسابيع</option>
+                    <option value="12">12 أسبوعًا</option>
+                    <option value="16">16 أسبوعًا</option>
+                    <option value="20">20 أسبوعًا</option>
+                    <option value="24">24 أسبوعًا</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studyFees">رسوم الدراسة</label>
+                <input type="number" id="studyFees" placeholder="أدخل رسوم الدراسة">
+            </div>
+            <div class="form-group">
+                <label for="accommodation">عدد أسابيع الإقامة</label>
+                <select id="accommodation">
+                    <option value="4">4 أسابيع</option>
+                    <option value="6">6 أسابيع</option>
+                    <option value="8">8 أسابيع</option>
+                    <option value="12">12 أسبوعًا</option>
+                    <option value="16">16 أسبوعًا</option>
+                    <option value="20">20 أسبوعًا</option>
+                    <option value="24">24 أسبوعًا</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="accommodationFees">رسوم الإقامة</label>
+                <input type="number" id="accommodationFees" placeholder="أدخل رسوم الإقامة">
+            </div>
+            <div class="form-group">
+                <label for="insuranceFees">رسوم التأمين</label>
+                <input type="number" id="insuranceFees" placeholder="أدخل رسوم التأمين">
+            </div>
+            <div class="form-group">
+                <label for="airportPickupFees">رسوم النقل من المطار</label>
+                <input type="number" id="airportPickupFees" placeholder="أدخل رسوم النقل من المطار">
+            </div>
+            <button onclick="addData()">إضافة/تحديث البيانات</button>
+        </div>
+        <div>
+            <h2>بحث البيانات</h2>
+            <input type="text" id="search" placeholder="ابحث عن الدولة أو المدينة أو المدرسة أو الدورة" onkeyup="searchData()">
+        </div>
+        <div>
+            <h2>قائمة البيانات</h2>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>الدولة</th>
+                        <th>المدرسة</th>
+                        <th>صورة المدرسة</th>
+                        <th>وصف المدرسة</th>
+                        <th>الدورة الدراسية</th>
+                        <th>الأسابيع</th>
+                        <th>رسوم الدراسة</th>
+                        <th>أسابيع الإقامة</th>
+                        <th>رسوم الإقامة</th>
+                        <th>رسوم التأمين</th>
+                        <th>رسوم النقل من المطار</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data rows will appear here -->
+                </tbody>
+            </table>
+            <button class="show-more" onclick="showMore()">عرض المزيد</button>
+        </div>
+    </div>
+    <script>
+        let data = JSON.parse(localStorage.getItem('dashboardData')) || [];
+        let isShowingAll = false;
+
+        function addData() {
+            const country = document.getElementById('country').value;
+            const city = document.getElementById('city').value;
+            const school = document.getElementById('school').value;
+            const schoolImage = document.getElementById('schoolImage').value;
+            const schoolDescription = document.getElementById('schoolDescription').value;
+            const course = document.getElementById('course').value;
+            const weeks = document.getElementById('weeks').value;
+            const studyFees = document.getElementById('studyFees').value;
+            const accommodation = document.getElementById('accommodation').value;
+            const accommodationFees = document.getElementById('accommodationFees').value;
+            const insuranceFees = document.getElementById('insuranceFees').value;
+            const airportPickupFees = document.getElementById('airportPickupFees').value;
+
+            if (country && city && school && course && weeks && studyFees && accommodation && accommodationFees && insuranceFees && airportPickupFees) {
+                data.push({
+                    country,
+                    city,
+                    school,
+                    schoolImage,
+                    schoolDescription,
+                    course,
+                    weeks,
+                    studyFees,
+                    accommodation,
+                    accommodationFees,
+                    insuranceFees,
+                    airportPickupFees
+                });
+                localStorage.setItem('dashboardData', JSON.stringify(data));
+                displayData();
+                clearForm();
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('country').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('school').value = '';
+            document.getElementById('schoolImage').value = '';
+            document.getElementById('schoolDescription').value = '';
+            document.getElementById('course').value = '';
+            document.getElementById('weeks').value = '4';
+            document.getElementById('studyFees').value = '';
+            document.getElementById('accommodation').value = '4';
+            document.getElementById('accommodationFees').value = '';
+            document.getElementById('insuranceFees').value = '';
+            document.getElementById('airportPickupFees').value = '';
+        }
+
+        function displayData() {
+            const tableBody = document.getElementById('dataTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            // Show only the first data entry initially
+            const dataToDisplay = isShowingAll ? data : data.slice(0, 1);
+
+            dataToDisplay.forEach((entry, index) => {
+                const row = `
+                    <tr>
+                        <td>${entry.country}</td>
+                        <td>${entry.school}</td>
+                        <td><img src="${entry.schoolImage}" alt="${entry.school}" class="image"></td>
+                        <td>${entry.schoolDescription}</td>
+                        <td>${entry.course}</td>
+                        <td>${entry.weeks}</td>
+                        <td>${entry.studyFees}</td>
+                        <td>${entry.accommodation}</td>
+                        <td>${entry.accommodationFees}</td>
+                        <td>${entry.insuranceFees}</td>
+                        <td>${entry.airportPickupFees}</td>
+                        <td>
+                            <button onclick="editData(${index})">تعديل</button>
+                            <button onclick="deleteData(${index})">حذف</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function showMore() {
+            isShowingAll = true;
+            displayData();
+            document.querySelector('.show-more').style.display = 'none';  // Hide the "Show More" button
+        }
+
+        function editData(index) {
+            const entry = data[index];
+            document.getElementById('country').value = entry.country;
+            document.getElementById('city').value = entry.city;
+            document.getElementById('school').value = entry.school;
+            document.getElementById('schoolImage').value = entry.schoolImage;
+            document.getElementById('schoolDescription').value = entry.schoolDescription;
+            document.getElementById('course').value = entry.course;
+            document.getElementById('weeks').value = entry.weeks;
+            document.getElementById('studyFees').value = entry.studyFees;
+            document.getElementById('accommodation').value = entry.accommodation;
+            document.getElementById('accommodationFees').value = entry.accommodationFees;
+            document.getElementById('insuranceFees').value = entry.insuranceFees;
+            document.getElementById('airportPickupFees').value = entry.airportPickupFees;
+
+            // Remove the data after editing
+            data.splice(index, 1);
+            localStorage.setItem('dashboardData', JSON.stringify(data));
+            displayData();
+        }
+
+        function deleteData(index) {
+            data.splice(index, 1);
+            localStorage.setItem('dashboardData', JSON.stringify(data));
+            displayData();
+        }
+
+        function searchData() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filteredData = data.filter(entry =>
+                entry.country.toLowerCase().includes(searchTerm) ||
+                entry.city.toLowerCase().includes(searchTerm) ||
+                entry.school.toLowerCase().includes(searchTerm) ||
+                entry.course.toLowerCase().includes(searchTerm)
+            );
+            displayFilteredData(filteredData);
+        }
+
+        function displayFilteredData(filteredData) {
+            const tableBody = document.getElementById('dataTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+            filteredData.forEach((entry, index) => {
+                const row = `
+                    <tr>
+                        <td>${entry.country}</td>
+                        <td>${entry.school}</td>
+                        <td><img src="${entry.schoolImage}" alt="${entry.school}" class="image"></td>
+                        <td>${entry.schoolDescription}</td>
+                        <td>${entry.course}</td>
+                        <td>${entry.weeks}</td>
+                        <td>${entry.studyFees}</td>
+                        <td>${entry.accommodation}</td>
+                        <td>${entry.accommodationFees}</td>
+                        <td>${entry.insuranceFees}</td>
+                        <td>${entry.airportPickupFees}</td>
+                        <td>
+                            <button onclick="editData(${index})">تعديل</button>
+                            <button onclick="deleteData(${index})">حذف</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        window.onload = displayData;
+    </script>
+</body>
+</html>
