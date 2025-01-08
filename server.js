@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://gseasaudi2030:12341234Es@cluster0.na3oi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb://atlas-sql-677e44120976a477d4b5a60c-na3oi.a.query.mongodb.net/sample_mflix?ssl=true&authSource=admin', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -23,7 +23,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://gseasaudi2030:12341234Es@cluster0.na3oi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+        mongoUrl: 'mongodb://atlas-sql-677e44120976a477d4b5a60c-na3oi.a.query.mongodb.net/sample_mflix?ssl=true&authSource=admin'
     })
 }));
 
