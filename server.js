@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/sessions', {
+mongoose.connect('mongodb+srv://gseasaudi2030:12341234@Es@cluster0.na3oi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -23,7 +23,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/sessions'
+        mongoUrl: 'mongodb+srv://gseasaudi2030:12341234@Es@cluster0.na3oi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
     })
 }));
 
