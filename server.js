@@ -3,17 +3,28 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 
 // Initialize the app
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/sessions', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     secret: 'your_secret_key',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/sessions'
+    })
 }));
 
 // Serve static files
