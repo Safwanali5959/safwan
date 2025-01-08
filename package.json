@@ -1,5 +1,5 @@
 {
-  "name": "safwan",
+  "name": "admin-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
-    "express-session": "^1.18.1"
+    "express-session": "^1.18.1",
+    "mongoose": "^6.8.0",
+    "connect-mongo": "^4.6.0"
   }
 }
