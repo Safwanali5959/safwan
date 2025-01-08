@@ -67,6 +67,11 @@ app.get('/logout', (req, res) => {
     });
 });
 
+// Home page
+app.get('/', (req, res) => {
+    res.send('<h1>Welcome to the Admin Backend</h1><p><a href="/login">Go to Login</a></p>');
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
